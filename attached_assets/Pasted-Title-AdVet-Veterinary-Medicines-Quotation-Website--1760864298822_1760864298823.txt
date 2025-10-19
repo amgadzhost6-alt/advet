@@ -1,0 +1,383 @@
+Title: AdVet — Veterinary Medicines Quotation Website
+
+------------------------------------------------------------
+🏗️ OVERVIEW
+------------------------------------------------------------
+Build a responsive bilingual veterinary medicines website called **AdVet** using:
+- Plain PHP (no frameworks)
+- Vanilla JavaScript (no React, no libraries)
+- JSON files for all data (no database)
+- Simple Admin Dashboard for content management
+- Theme modes: Light / Dark / System auto-detect
+- Localization: English (en) + Arabic (ar)
+- UI effects and animations inspired by reactbits.dev
+
+Purpose:
+Showcase veterinary products and allow users to request quotations (not buy online).  
+Admin can manage products, view contact messages, and edit company info/social links.
+
+------------------------------------------------------------
+📁 FOLDER STRUCTURE
+------------------------------------------------------------
+/advet
+│
+├── index.php                     # Home
+├── about.php                     # About Us
+├── products.php                  # All Products
+├── contact.php                   # Contact Page
+│
+├── /admin                        # Dashboard
+│   ├── index.php                 # Admin login
+│   ├── dashboard.php             # Dashboard overview
+│   ├── products.php              # Manage products
+│   ├── messages.php              # View contact messages
+│   ├── settings.php              # Edit social media links and company info
+│   ├── logout.php
+│   └── auth.php                  # Authentication logic (reads admin.json)
+│
+├── /api
+│   ├── quotation_submit.php      # Save new quotation
+│   ├── contact_submit.php        # Save new message
+│   ├── admin_add_product.php     # Add new product
+│   ├── admin_edit_product.php    # Edit product
+│   ├── admin_delete_product.php  # Delete product
+│   ├── admin_update_settings.php # Update settings/socials
+│   ├── load_products.php         # Fetch products for public pages
+│   └── load_services.php         # Fetch services (for home)
+│
+├── /data
+│   ├── products.json
+│   ├── services.json
+│   ├── quotations.json
+│   ├── messages.json
+│   ├── settings.json
+│   └── admin.json
+│
+├── /assets
+│   ├── css/
+│   │   ├── style.css
+│   │   ├── admin.css
+│   │   └── dark.css
+│   ├── js/
+│   │   ├── main.js
+│   │   ├── theme.js
+│   │   ├── i18n.js
+│   │   └── effects.js
+│   ├── images/
+│   └── icons/
+│
+├── /lang
+│   ├── en.json
+│   └── ar.json
+│
+└── /includes
+    ├── header.php
+    ├── footer.php
+    ├── navbar.php
+    ├── functions.php             # Helper utilities
+    └── guard.php                 # Auth/session checks
+
+------------------------------------------------------------
+🏠 PUBLIC PAGES
+------------------------------------------------------------
+
+1️⃣ HOME PAGE (index.php)
+- Hero section with banner, slogan, and “Request Quotation” button.
+- Featured Services: loaded from /data/services.json; interactive cards with tilt/hover.
+- Featured Products: first few from /data/products.json; cards with hover effects.
+- Contact CTA section linking to contact.php.
+- Footer with language switcher and theme toggle.
+
+2️⃣ PRODUCTS PAGE (products.php)
+- Displays all products (read from products.json)
+- Search bar + optional filter by category
+- Each product card:
+  - Image, Name, Description, Strength, Pack Size
+  - “Request Quotation” button → opens quotation form modal
+- Quotation form (JS modal):
+  - Fields: name, email, phone, quantity, message
+  - Submit → POST to /api/quotation_submit.php → save JSON entry
+  - Show localized confirmation message.
+
+3️⃣ ABOUT US (about.php)
+- Static section: mission, story, values, contact summary.
+- Localized (uses strings from /lang).
+
+4️⃣ CONTACT US (contact.php)
+- Form: name, email, phone, message
+- POST → /api/contact_submit.php
+- Save to messages.json
+- Optional email notification to admin
+- Display localized success message.
+
+------------------------------------------------------------
+⚙️ ADMIN DASHBOARD
+------------------------------------------------------------
+
+🔐 LOGIN (/admin/index.php)
+- Form asks username/password
+- Reads /data/admin.json
+  Example:
+  ```json
+  { "username": "admin", "password": "$2y$10$abCDxyzHashedPassword" }
+Use PHP password_verify().
+
+On success, set $_SESSION['admin'].
+
+🧭 DASHBOARD OVERVIEW (/admin/dashboard.php)
+
+Small summary boxes:
+
+Total Products
+
+Total Quotations
+
+Unread Messages
+
+Quick navigation buttons.
+
+📦 MANAGE PRODUCTS (/admin/products.php)
+
+List all products from products.json
+
+Add new (form with inputs + image upload)
+
+Edit existing product
+
+Delete product
+
+Writes back to products.json with flock() to prevent conflicts.
+
+Image uploads go to /assets/images/products/
+
+💬 VIEW MESSAGES (/admin/messages.php)
+
+Reads messages.json
+
+Lists contact messages with:
+
+Name, Email, Phone, Message, Date
+
+Mark messages as read/unread (save state).
+
+🔧 SETTINGS (/admin/settings.php)
+
+Edit company info and social media URLs
+Example (settings.json):
+
+json
+Copy code
+{
+  "company": "AdVet",
+  "email": "info@advet.com",
+  "phone": "+20123456789",
+  "address": "Cairo, Egypt",
+  "social": {
+    "facebook": "https://facebook.com/advet",
+    "instagram": "https://instagram.com/advet",
+    "whatsapp": "https://wa.me/20123456789",
+    "linkedin": "https://linkedin.com/company/advet"
+  }
+}
+Save via AJAX → api/admin_update_settings.php.
+
+📤 LOGOUT (/admin/logout.php)
+
+Clears session and redirects to login.
+
+💾 JSON DATA STRUCTURES
+products.json
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "name_en": "Ivermectin Injection",
+    "name_ar": "حقن إيفرمكتين",
+    "description_en": "Broad-spectrum antiparasitic for cattle and sheep.",
+    "description_ar": "دواء مضاد للطفيليات واسع الطيف للماشية والأغنام.",
+    "category": "Antiparasitic",
+    "strength": "1%",
+    "pack_size": "50ml",
+    "manufacturer": "VetPharm",
+    "image": "ivermectin.jpg"
+  }
+]
+services.json
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "title_en": "Veterinary Consultation",
+    "title_ar": "استشارة بيطرية",
+    "desc_en": "Professional advice for animal care and medicine usage.",
+    "desc_ar": "نصائح مهنية للعناية بالحيوانات واستخدام الأدوية.",
+    "icon": "consult.svg"
+  }
+]
+quotations.json
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "date": "2025-10-19",
+    "customer": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "+20123456789"
+    },
+    "product_id": 1,
+    "quantity": 10,
+    "notes": "Urgent delivery",
+    "status": "new"
+  }
+]
+messages.json
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "date": "2025-10-19",
+    "name": "Sara",
+    "email": "sara@example.com",
+    "phone": "+2010000000",
+    "message": "Do you have bulk discounts?",
+    "read": false
+  }
+]
+🌍 LOCALIZATION FILES
+lang/en.json
+
+json
+Copy code
+{
+  "home": {
+    "banner_title": "AdVet — Trusted Veterinary Medicines",
+    "banner_cta": "Request Quotation",
+    "featured_services": "Featured Services",
+    "featured_products": "Featured Products"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "submit": "Send Message",
+    "success": "Your message has been sent successfully."
+  },
+  "quotation": {
+    "success": "Quotation submitted successfully! We'll contact you soon."
+  },
+  "mode": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}
+lang/ar.json
+
+json
+Copy code
+{
+  "home": {
+    "banner_title": "أدفِت — أدوية بيطرية موثوقة",
+    "banner_cta": "طلب عرض سعر",
+    "featured_services": "الخدمات المميزة",
+    "featured_products": "المنتجات المميزة"
+  },
+  "contact": {
+    "title": "تواصل معنا",
+    "submit": "إرسال الرسالة",
+    "success": "تم إرسال رسالتك بنجاح."
+  },
+  "quotation": {
+    "success": "تم إرسال طلب عرض السعر بنجاح! سنتواصل معك قريبًا."
+  },
+  "mode": {
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام"
+  }
+}
+🌓 THEME HANDLING
+Detect system theme using:
+window.matchMedia('(prefers-color-scheme: dark)')
+
+User can toggle theme → saves to localStorage.
+
+CSS variables define theme colors.
+
+Smooth fade transition between modes.
+
+💫 ANIMATIONS (reactbits.dev inspired)
+Recreate in vanilla JS:
+
+Fade-in on scroll (IntersectionObserver)
+
+Card hover tilt
+
+Button ripple on click
+
+Lazy image fade-in
+
+Smooth scroll anchors
+
+🔒 SECURITY
+Sanitize all inputs using htmlspecialchars().
+
+Validate email and phone formats.
+
+Lock JSON files with flock() when writing.
+
+Use password hashing for admin login.
+
+Optional CAPTCHA on forms.
+
+📬 EMAIL NOTIFICATIONS (optional)
+On quotation/contact form submission, send mail to admin:
+
+perl
+Copy code
+mail("info@advet.com", "New Quotation Request", $message);
+Use localized subjects and content.
+
+✅ DELIVERABLES
+The final website must include:
+
+Public pages (Home, Products, About, Contact)
+
+Multi-language (EN/AR) toggle
+
+Dark/Light/System theme toggle
+
+Quotation request system (JSON storage)
+
+Admin dashboard with:
+
+Product management (CRUD)
+
+Message viewer
+
+Settings editor (social links)
+
+Modern interactive effects (reactbits.dev style)
+
+100% plain PHP + vanilla JS
+
+Responsive design (mobile/tablet/desktop)
+
+💡 VISUAL STYLE
+Clean, clinical, and professional.
+
+Colors: teal/green/white palette (veterinary theme).
+
+Rounded interactive cards, soft shadows, smooth animations.
+
+RTL layout support for Arabic.
+
+yaml
+Copy code

@@ -1,0 +1,106 @@
+{
+  "site_name": "AdVet",
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "home": {
+    "banner_title": "AdVet — Trusted Veterinary Medicines",
+    "banner_subtitle": "Quality veterinary products for healthier animals",
+    "banner_cta": "Request Quotation",
+    "featured_services": "Our Services",
+    "featured_products": "Featured Products",
+    "view_all": "View All Products",
+    "contact_cta_title": "Need Help or Have Questions?",
+    "contact_cta_desc": "Our team is ready to assist you with product information and quotations.",
+    "contact_cta_button": "Contact Us"
+  },
+  "products": {
+    "title": "Our Products",
+    "search_placeholder": "Search products...",
+    "filter_all": "All Categories",
+    "request_quote": "Request Quotation",
+    "view_details": "View Details",
+    "back_to_products": "Back to Products",
+    "more_like_this": "More Like This",
+    "specifications": "Product Specifications",
+    "category": "Category",
+    "strength": "Strength",
+    "pack_size": "Pack Size",
+    "manufacturer": "Manufacturer",
+    "no_products": "No products found"
+  },
+  "about": {
+    "title": "About AdVet",
+    "mission_title": "Our Mission",
+    "mission_text": "AdVet is dedicated to providing high-quality veterinary medicines and products to animal care professionals across the region. We partner with certified manufacturers to ensure the safety and efficacy of every product we offer.",
+    "values_title": "Our Values",
+    "quality": "Quality Assurance",
+    "quality_desc": "Every product is sourced from certified manufacturers with strict quality control.",
+    "trust": "Trust & Reliability",
+    "trust_desc": "Building long-term relationships with our clients through consistent service.",
+    "expertise": "Veterinary Expertise",
+    "expertise_desc": "Our team includes experienced veterinary professionals ready to assist you."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team",
+    "name": "Your Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "message": "Your Message",
+    "submit": "Send Message",
+    "success": "Your message has been sent successfully. We'll contact you soon!",
+    "error": "Please fill all required fields.",
+    "info_title": "Contact Information"
+  },
+  "quotation": {
+    "title": "Request Quotation",
+    "product": "Product",
+    "quantity": "Quantity",
+    "notes": "Additional Notes",
+    "close": "Close",
+    "submit": "Submit Request",
+    "success": "Quotation submitted successfully! We'll contact you soon.",
+    "error": "Please fill all required fields."
+  },
+  "footer": {
+    "about": "AdVet provides trusted veterinary medicines and professional consultation services.",
+    "quick_links": "Quick Links",
+    "contact_info": "Contact Information",
+    "follow_us": "Follow Us",
+    "rights": "All rights reserved"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "admin": {
+    "login": "Admin Login",
+    "username": "Username",
+    "password": "Password",
+    "login_button": "Login",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "quotations": "Quotations",
+    "messages": "Messages",
+    "settings": "Settings",
+    "total_products": "Total Products",
+    "total_quotations": "Total Quotations",
+    "unread_messages": "Unread Messages",
+    "add_product": "Add Product",
+    "edit_product": "Edit Product",
+    "delete_product": "Delete",
+    "product_name": "Product Name",
+    "description": "Description",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete_confirm": "Are you sure you want to delete this product?",
+    "company_info": "Company Information",
+    "social_media": "Social Media Links"
+  }
+}

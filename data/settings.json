@@ -1,0 +1,12 @@
+{
+  "company": "AdVet",
+  "email": "info@advet.com",
+  "phone": "+20123456789",
+  "address": "Cairo, Egypt",
+  "social": {
+    "facebook": "https://facebook.com/advet",
+    "instagram": "https://instagram.com/advet",
+    "whatsapp": "https://wa.me/20123456789",
+    "linkedin": "https://linkedin.com/company/advet"
+  }
+}

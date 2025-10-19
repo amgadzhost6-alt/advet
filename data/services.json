@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title_en": "Veterinary Consultation",
+    "title_ar": "استشارة بيطرية",
+    "desc_en": "Professional advice for animal care and medicine usage from experienced veterinarians.",
+    "desc_ar": "نصائح مهنية للعناية بالحيوانات واستخدام الأدوية من أطباء بيطريين ذوي خبرة.",
+    "icon": "consult.svg"
+  },
+  {
+    "id": 2,
+    "title_en": "Fast Delivery",
+    "title_ar": "توصيل سريع",
+    "desc_en": "Quick and reliable delivery of veterinary medicines to your location.",
+    "desc_ar": "توصيل سريع وموثوق للأدوية البيطرية إلى موقعك.",
+    "icon": "delivery.svg"
+  },
+  {
+    "id": 3,
+    "title_en": "Quality Guarantee",
+    "title_ar": "ضمان الجودة",
+    "desc_en": "All products are sourced from certified manufacturers with quality assurance.",
+    "desc_ar": "جميع المنتجات من مصنعين معتمدين مع ضمان الجودة.",
+    "icon": "quality.svg"
+  },
+  {
+    "id": 4,
+    "title_en": "Bulk Orders",
+    "title_ar": "طلبات بالجملة",
+    "desc_en": "Special pricing and support for large quantity orders and distributors.",
+    "desc_ar": "أسعار خاصة ودعم للطلبات الكبيرة والموزعين.",
+    "icon": "bulk.svg"
+  }
+]
